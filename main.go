@@ -1,30 +1,20 @@
 package main
 
-import "fmt"
-
-type Account struct {
-	holder        string
-	agencyNumber  int
-	accountNumber int
-	balance       float64
-}
-
-func (account *Account) draw(value float64) string {
-	canDraw := value <= account.balance && value > 0
-	if canDraw {
-		account.balance -= value
-		return "Draw successful!"
-	}
-	return "Draw not allowed!"
-}
+import (
+	"bank/accounts"
+	"fmt"
+)
 
 func main() {
 	// account := Account{holder: "Igor", agencyNumber: 123, accountNumber: 123456, balance: 123.45}
-	account := Account{"Igor", 123, 123456, 500}
+	account := accounts.Account{"Igor", 123, 123456, 300}
+	otherAccount := accounts.Account{Holder: "John", Balance: 100}
+
+	status := account.Transfer(250, &otherAccount)
+	fmt.Println(status)
 
 	fmt.Println(account)
-	fmt.Println(account.draw(200))
-	fmt.Println(account.balance)
+	fmt.Println(otherAccount)
 
 	// var otherAccount *Account
 	// otherAccount = new(Account)
