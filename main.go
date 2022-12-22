@@ -2,15 +2,18 @@ package main
 
 import (
 	"bank/accounts"
-	"bank/clients"
 	"fmt"
 )
 
 func main() {
-	holder1 := clients.Holder{Name: "Igor", Cpf: "123.123.123-12", Profession: "Software Engineer"}
-	account1 := accounts.Account{Holder: holder1, AgencyNumber: 123, AccountNumber: 123456}
+	savingsAccount := accounts.SavingsAccount{}
+	savingsAccount.Deposit(100)
 
-	account1.Deposit(150)
+	payTicket(&savingsAccount, 60)
 
-	fmt.Println(account1.GetBalance())
+	fmt.Println(savingsAccount.GetBalance())
+}
+
+func payTicket(account accounts.Account, value float64) {
+	account.Draw(value)
 }
