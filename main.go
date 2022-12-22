@@ -2,24 +2,15 @@ package main
 
 import (
 	"bank/accounts"
+	"bank/clients"
 	"fmt"
 )
 
 func main() {
-	// account := Account{holder: "Igor", agencyNumber: 123, accountNumber: 123456, balance: 123.45}
-	account := accounts.Account{"Igor", 123, 123456, 300}
-	otherAccount := accounts.Account{Holder: "John", Balance: 100}
+	holder1 := clients.Holder{Name: "Igor", Cpf: "123.123.123-12", Profession: "Software Engineer"}
+	account1 := accounts.Account{Holder: holder1, AgencyNumber: 123, AccountNumber: 123456}
 
-	status := account.Transfer(250, &otherAccount)
-	fmt.Println(status)
+	account1.Deposit(150)
 
-	fmt.Println(account)
-	fmt.Println(otherAccount)
-
-	// var otherAccount *Account
-	// otherAccount = new(Account)
-	// otherAccount.holder = "John"
-	// otherAccount.balance = 500
-
-	// fmt.Println(*otherAccount)
+	fmt.Println(account1.GetBalance())
 }
